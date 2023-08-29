@@ -18,7 +18,9 @@ This is a todo list.
 
 You can add and delete stuff from a todo list.
 
-This is super next-level technology. We can't let the [redacted] get their hands on this.
+This is super next-level tech.
+
+We can't let the [redacted] get their hands on this.
 
 ## Quick Start: Activity Manager Dashboard
 
