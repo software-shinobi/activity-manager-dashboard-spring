@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<title>
+
+Activity Manager // Software Shinobi
+
+</title> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="icon" href="images/favicon.ico" type="image/ico" />
+
+<link rel="stylesheet" th:href="@{/thousand-oaks/vendors/bootstrap/dist/css/bootstrap.min.css}">
+
+<link rel="stylesheet" th:href="@{/thousand-oaks/vendors/font-awesome/css/font-awesome.min.css}">
+
+<link rel="stylesheet" th:href="@{/thousand-oaks/vendors/nprogress/nprogress.css}">
+
+<link rel="stylesheet" th:href="@{/thousand-oaks/vendors/iCheck/skins/flat/green.css}">
+
+<link rel="stylesheet" th:href="@{/thousand-oaks/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css}">
+
+<link rel="stylesheet" th:href="@{/thousand-oaks/vendors/jqvmap/dist/jqvmap.min.css}">
+
+<link rel="stylesheet" th:href="@{/thousand-oaks/vendors/bootstrap-daterangepicker/daterangepicker.css}">
+
+<link rel="stylesheet" th:href="@{/thousand-oaks/build/css/custom.min.css}">
+
+</head>
+
+<body class="nav-md footer_fixed">
+
+<div class="container body">
+
+<div class="main_container">
+
+    <div class="col-md-3 left_col menu_fixed mCustomScrollbar _mCS_1 mCS-autoHide" style="overflow: visible;">
+
+    </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+
+
+
+
+          </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+
+
+
+            <div class="">
+
+                <div class="page-title">
+
+                    <div class="title_left">
+                        <h3>Manage Activity Task<small></small></h3>
+                    </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_panel">
+
+                            <div class="x_title">
+
+                                <h2>Add New Activity</h2>
+
+                                <div class="clearfix"></div>
+
+                            </div>
+
+                            <div class="x_content">
+
+                                <form method="post" th:action="@{/save-new-activity}" th:object="${activityTask}">
+
+                                    <div id="spacersituatio">
+
+                                        <label class="col-form-label col-md-1 col-sm-1 label-align">
+
+                                            Project
+
+                                        </label>
+
+                                        <div class="col-md-4 col-sm-4 ">
+
+                                            <input id="category" th:field="*{category}" type="text" required="required" class="form-control ">
+
+                                        </div>
+
+                                        <label class="col-form-label col-md-1 col-sm-1 label-align">
+
+                                            Status
+
+                                        </label>
+
+                                        <div class="col-md-4 col-sm-4 ">
+
+                                            <input id="status" th:field="*{status}" type="text" required="required" class="form-control ">
+
+                                        </div>
+
+                                        <br />	<br />	<br />
+
+                                        <label class="col-form-label col-md-1 col-sm-1 label-align">
+                                            Description
+                                        </label>
+
+                                        <div class="col-md-9 col-sm-9 ">
+
+                                            <input id="description" th:field="*{description}" type="text" required="required" class="form-control ">
+
+                                        </div>
+
+                                        <button type="submit" class="btn btn-success">Add Activity</button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+
+                                <h2>Activity Backlog</h2>
+
+                                <div class="clearfix"></div>
+
+                            </div>
+                            <div class="x_content">
+
+                                <p>Simple table with project listing with progress and editing options</p>
+
+                                <!-- start project list -->
+
+                                <table class="table table-striped projects">
+
+                                    <thead>
+                                    <tr>
+
+                                        <th class="col-md-1">
+
+                                            ID
+
+                                        </th>
+
+                                        <th style="width: 20%">
+
+                                            Project
+
+                                        </th>
+
+                                        <th>
+
+                                            Activity
+
+                                        </th>
+
+                                        <th style="width: 20%">
+
+                                            Status
+
+                                        </th>
+
+                                        <th style="width: 20%">
+
+                                            Actions
+
+                                        </th>
+
+                                    </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                    <tr th:each="activityTask : ${activityTaskList}">
+
+                                        <td th:text="${activityTask.id}"></td>
+
+                                        <td th:text="${activityTask.category}"></td>
+
+                                        <td th:text="${activityTask.description}"></td>
+
+                                        <td th:text="${activityTask.status}" ></td>
+
+                                        <td>
+
+                                            <a class="btn btn-primary btn-xs" th:href="@{'/delete-activity?id=' + ${activityTask.id}}">
+
+                                                <i class="fa fa-trash-o"></i>
+
+                                                Mark Complete
+
+                                            </a>
+
+                                        </td>
+
+                                    </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    <!-- /page content -->
+
+    <!-- footer content -->
+    <footer>
+
+            <div class="pull-right">
+
+            Build with love and intention by
+
+            <a href="https://github.com/software-shinobi">
+
+                Software Shinobi
+                
+            </a>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+        </footer>
+
+    </div>
+
+</div>
+
+<script th:src="@{/thousand-oaks/vendors/jquery/dist/jquery.min.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/fastclick/lib/fastclick.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/nprogress/nprogress.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/Chart.js/dist/Chart.min.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/gauge.js/dist/gauge.min.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/iCheck/icheck.min.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/skycons/skycons.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/Flot/jquery.flot.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/Flot/jquery.flot.pie.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/Flot/jquery.flot.time.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/Flot/jquery.flot.stack.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/Flot/jquery.flot.resize.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/flot.orderbars/js/jquery.flot.orderBars.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/flot-spline/js/jquery.flot.spline.min.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/flot.curvedlines/curvedLines.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/DateJS/build/date.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/jqvmap/dist/jquery.vmap.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/jqvmap/dist/maps/jquery.vmap.world.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/moment/min/moment.min.js}"></script>
+
+<script th:src="@{/thousand-oaks/vendors/bootstrap-daterangepicker/daterangepicker.js}"></script>
+
+<!-- Custom Scripting -->
+
+<script th:src="@{/thousand-oaks/build/js/custom.min.js}"></script>
+
+<script th:src="@{/thousand-oaks/scripting-software-shinobi-common.js}"></script>
+
+<script th:src="@{/thousand-oaks/scripting-thousand-oaks-common.js}"></script>
+
+<script th:src="@{/thousand-oaks/scripting-todo-app-common.js}"></script>
+
+</body>
+
+</html>
