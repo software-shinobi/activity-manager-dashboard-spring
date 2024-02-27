@@ -1,10 +1,10 @@
 services:
 
-    activity-manager-api:
+    activity-manager-server:
 
-        container_name: activity-manager-api
+        container_name: activity-manager-server
         
-        image: softwareshinobi/activity-manager-api
+        image: softwareshinobi/activity-manager-server
 
         depends_on:
 
@@ -39,11 +39,11 @@ services:
         image: mariadb
 
         ##   volumes:
-
+        ##
         ##       - ./.container-volumes/mariadb-server:/var/lib/mysql
-
+        ##
         ##   ports:
-
+        ##
         ##       - "8886:3306"
 
         environment:
