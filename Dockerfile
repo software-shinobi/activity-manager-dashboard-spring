@@ -10,8 +10,8 @@ RUN mvn install -DskipTests
 
 FROM eclipse-temurin:18-jre-alpine
 
-COPY --from=mavenBuild /target/big-boss-lifestyle-1.0.jar /big-boss-lifestyle.jar
+COPY --from=mavenBuild /target/activity-manager-1.0.jar /activity-manager.jar
 
 COPY --from=mavenBuild /src/main/resources/application.properties /application.properties
 
-CMD ["java", "-jar", "/big-boss-lifestyle.jar"] 
+CMD ["java", "-jar", "/activity-manager.jar"] 
