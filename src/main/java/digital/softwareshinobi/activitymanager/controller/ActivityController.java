@@ -1,9 +1,10 @@
-package online.softwareshinobi.activitymanagerdashboard.controller;
+package digital.softwareshinobi.activitymanager.controller;
 
+import digital.softwareshinobi.activitymanager.model.Activity;
+import digital.softwareshinobi.activitymanager.service.ActivityService;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import online.softwareshinobi.activitymanagerdashboard.model.ActivityTask;
-import online.softwareshinobi.activitymanagerdashboard.service.ActivityTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,23 +13,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Controller
 @Slf4j
-public class ActivityTaskController {
+public class ActivityController {
 
     @Autowired
-    ActivityTaskService activityTaskService;
+    ActivityService activityTaskService;
 
-    public ActivityTaskController() {
+    public ActivityController() {
 
         System.out.println("we started from the bottom, now we here");
 
     }
 
     @Autowired
-    public ActivityTaskController(ActivityTaskService activityTaskService) {
+    public ActivityController(ActivityService activityTaskService) {
 
         this.activityTaskService = activityTaskService;
 
@@ -39,7 +38,7 @@ public class ActivityTaskController {
 
         System.out.println("enter > displayHomeScreen");
 
-        List<ActivityTask> activityTaskList = activityTaskService.getAllActivityTasks();
+        List<Activity> activityTaskList = activityTaskService.getAllActivityTasks();
 
         System.out.println("the list of activity task:");
 
@@ -47,7 +46,7 @@ public class ActivityTaskController {
 
         model.addAttribute("activityTaskList", activityTaskList);
 
-        model.addAttribute("activityTask", new ActivityTask());
+        model.addAttribute("activityTask", new Activity());
 
         System.out.println("exit > displayHomeScreen");
 
@@ -56,13 +55,13 @@ public class ActivityTaskController {
     }
 
     @PostMapping("/save-new-activity")
-    public String saveNewActivityTask(@ModelAttribute ActivityTask activityTask, Model model) {
+    public String saveNewActivityTask(@ModelAttribute Activity activityTask, Model model) {
 
         System.out.println(">> save-new-activity " + activityTask);
 
         System.out.println("in:  " + activityTask);
 
-        ActivityTask activityTask1 = this.activityTaskService.saveActivityTask(activityTask);
+        Activity activityTask1 = this.activityTaskService.saveActivityTask(activityTask);
 
         System.out.println("out: " + activityTask1);
 
@@ -74,7 +73,7 @@ public class ActivityTaskController {
 
         } else {
 
-            model.addAttribute("toast", "new activity '$$' added".replace("##",activityTask.getDescription()));
+            model.addAttribute("toast", "new activity '$$' added".replace("##", activityTask.getDescription()));
 
         }
 
@@ -95,4 +94,3 @@ public class ActivityTaskController {
 
     }
 }
-

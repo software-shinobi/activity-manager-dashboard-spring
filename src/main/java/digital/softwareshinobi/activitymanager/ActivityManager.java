@@ -1,14 +1,14 @@
-package online.softwareshinobi.activitymanagerdashboard;
+package digital.softwareshinobi.activitymanager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ActivityManagerDashboard {
+public class ActivityManager {
 
     public static void main(final String[] commandLineArguments) {
     
-        SpringApplication.run(ActivityManagerDashboard.class, commandLineArguments);
+        SpringApplication.run(ActivityManager.class, commandLineArguments);
         
     }
 

@@ -1,0 +1,83 @@
+services:
+
+    activity-manager-api:
+
+        container_name: activity-manager-api
+        
+        image: softwareshinobi/activity-manager-api
+
+        depends_on:
+
+           - activity-manager-database
+
+        build: 
+
+            context: .
+
+            dockerfile: Dockerfile
+    
+        restart: always
+
+        ports:
+
+            - "8888:8888"
+
+        environment:
+
+            DB_HOST: activity-manager-database
+
+            DB_NAME: activity_manager
+
+            DB_USER: activity_manager
+
+            DB_PASS: activity_manager
+
+    activity-manager-database:
+
+        container_name: activity-manager-database
+
+        image: mariadb
+
+        ##   volumes:
+
+        ##       - ./.container-volumes/mariadb-server:/var/lib/mysql
+
+        ##   ports:
+
+        ##       - "8886:3306"
+
+        environment:
+
+            MYSQL_ROOT_PASSWORD: aggiepride
+
+            MYSQL_DATABASE: activity_manager
+
+            MYSQL_USER: activity_manager
+
+            MYSQL_PASSWORD: activity_manager
+
+    activity-manager-phpmyadmin:
+
+        container_name: activity-manager-phpmyadmin
+
+        image: beeyev/phpmyadmin-lightweight
+
+        depends_on:
+
+           - activity-manager-database
+
+        links:
+
+           - activity-manager-database
+
+        ports:
+
+            - 8885:80
+
+        environment:
+
+            PMA_HOST: activity-manager-database
+
+            PMA_PORT: 3306
+
+            PMA_ARBITRARY: 1
