@@ -4,7 +4,7 @@ In this repository will find a spring mvc web application that managers a collec
 
 Basically, this is a glorified todo list. I just tried to call it something fancy.
 
-![Activity Manager Dashboard by Software Shinobi](cover-image.png)
+![Activity Manager Dashboard by Software Shinobi](/docs/cover.png)
 
 ## Prologue
 
